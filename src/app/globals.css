@@ -1,0 +1,110 @@
+@import "tailwindcss";
+@import "@fontsource-variable/figtree";
+@import "@fontsource-variable/source-serif-4";
+
+/*
+  Identidad visual: verde salvia profundo como color de acción, celeste para
+  Dermatología, beige arena para superficies secundarias, sobre un fondo claro
+  levemente verdoso. Tipografía: Figtree (interfaz) y Source Serif 4 (nombre de
+  la profesional y títulos).
+*/
+@theme {
+  --color-paper: #f6f8f6;
+  --color-surface: #ffffff;
+  --color-sand: #efe9df;
+  --color-sand-50: #f8f5ef;
+  --color-ink: #1e2b27;
+  --color-ink-soft: #55655f;
+  --color-line: #d9e1dc;
+  --color-line-strong: #b9c6bf;
+
+  --color-sage-50: #f0f6f2;
+  --color-sage-100: #e1eee6;
+  --color-sage-200: #c4dccf;
+  --color-sage-600: #3a7160;
+  --color-sage-700: #2e5e4e;
+  --color-sage-800: #234a3d;
+
+  --color-sky-50: #eef6fa;
+  --color-sky-100: #dbecf4;
+  --color-sky-700: #2b6580;
+
+  --color-danger: #a3362b;
+  --color-danger-50: #fbedea;
+  --color-warn: #7d5310;
+  --color-warn-50: #fbf3e2;
+
+  --font-sans: "Figtree Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Source Serif 4 Variable", ui-serif, Georgia, serif;
+
+  --radius-field: 0.625rem;
+  --radius-panel: 1rem;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 1;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-sage-600);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .btn-quiet,
+  .btn-danger {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius-field)] px-5 text-[15px] font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-55;
+  }
+  .btn-primary {
+    @apply bg-sage-700 text-white hover:bg-sage-800;
+  }
+  .btn-secondary {
+    @apply border border-line-strong bg-surface text-ink hover:bg-sage-50;
+  }
+  .btn-quiet {
+    @apply px-3 text-sage-700 hover:bg-sage-50;
+  }
+  .btn-danger {
+    @apply border border-danger/40 bg-surface text-danger hover:bg-danger-50;
+  }
+  .field-label {
+    @apply mb-1.5 block text-sm font-semibold text-ink;
+  }
+  .field-hint {
+    @apply mt-1 text-sm text-ink-soft;
+  }
+  .field-error {
+    @apply mt-1 text-sm font-medium text-danger;
+  }
+  .input {
+    @apply block min-h-11 w-full rounded-[var(--radius-field)] border border-line-strong bg-surface px-3.5 text-base text-ink placeholder:text-ink-soft/70 aria-[invalid=true]:border-danger;
+  }
+  textarea.input {
+    @apply py-2.5 leading-relaxed;
+  }
+  .panel {
+    @apply rounded-[var(--radius-panel)] border border-line bg-surface;
+  }
+  .link {
+    @apply font-semibold text-sage-700 underline decoration-sage-200 decoration-2 underline-offset-4 hover:decoration-sage-700;
+  }
+}
